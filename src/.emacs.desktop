@@ -1,0 +1,79 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Fri Sep  1 15:34:03 2023
+;; Desktop file format version 208
+;; Emacs version 28.2
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (25841 37867 292586 0) (desktop . "208") "pyskell@pitfall" nil nil ((((minibuffer . t) (fontsize . 0) (font . "-*-Menlo-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (child-frame-border-width) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "Black") (background-color . "White") (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (undecorated) (ns-appearance) (ns-transparent-titlebar) (z-group) (no-focus-on-map) (no-accept-focus) (menu-bar-lines . 0) (tool-bar-lines . 0) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 15) (scroll-bar-height . 15) (alpha) (fullscreen . maximized) (display-type . color) (background-mode . light) (cursor-color . "black") (scroll-bar-foreground . "black") (environment) (last-focus-update . t) (tabs (current-tab (name . "core.clj") (explicit-name))) (frameset--id . "3607-8F5E-8EE2-24D3") (frameset--mini t . t) (height . 48) (width . 155) (modeline . t) (unsplittable) (left . 0) (top . 0) (icon-name) (visibility . t) (display . "pitfall") (explicit-name) (tool-bar-position . top)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 6) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 64) (min-pixel-width . 80) (min-pixel-height-ignore . 32) (min-pixel-width-ignore . 48) (min-pixel-height-safe . 16) (min-pixel-width-safe . 16)) leaf (pixel-width . 1276) (pixel-height . 752) (total-width . 160) (total-height . 47) (normal-height . 1.0) (normal-width . 1.0) (buffer "core.clj" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 2 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 5695) (start . 4613)) (prev-buffers ("*cider-repl kafka/clojure-event-sourcing:localhost:62008(clj)*" 8662557 9457462) ("core.clj" 4613 5146) ("utils.clj" 1 257) ("serdes.clj" 1 187))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '(#("cg" 0 2 (isearch-case-fold-search t isearch-regexp-function nil)) #("/stat" 0 5 (isearch-regexp-function nil isearch-case-fold-search t)) #("gq" 0 2 (isearch-regexp-function nil isearch-case-fold-search t)) #("R" 0 1 (isearch-case-fold-search nil isearch-regexp-function nil)) #("ss" 0 2 (isearch-regexp-function nil isearch-case-fold-search t)) #("b" 0 1 (isearch-case-fold-search t isearch-regexp-function nil)) #(" b " 0 3 (isearch-case-fold-search t isearch-regexp-function nil)) #("\\bb\\b" 0 5 (isearch-case-fold-search t isearch-regexp-function nil)) #("swiper" 0 6 (isearch-case-fold-search t isearch-regexp-function nil)) #("." 0 1 (isearch-case-fold-search t isearch-regexp-function nil))))
+(setq regexp-search-ring '(#("\\_<monitor-topics\\_>" 0 20 (isearch-case-fold-search nil)) #("\\_<confirm-topic!\\_>" 0 20 (isearch-case-fold-search nil)) #("\\_<log-config\\_>" 0 16 (isearch-case-fold-search nil)) "clojure-mode" "cider" #("\\_<paredit-mode\\_>" 0 18 (isearch-case-fold-search nil)) "cider" "shu" "shut" #("topic-con" 0 9 (isearch-case-fold-search t)) #("\\_<start-topology\\_>" 0 20 (isearch-case-fold-search t)) #("process" 0 7 (isearch-case-fold-search t)) "pro" #("app-config" 0 10 (isearch-case-fold-search nil isearch-regexp-function nil)) #("\\_<app-config\\_>" 0 16 (isearch-case-fold-search nil)) #("\\_<join-windowed\\_>" 0 19 (isearch-case-fold-search t))))
+(setq register-alist '((48 . "[jackdaw.serdes :as js") (101 . "nil")))
+(setq file-name-history '("~/workspace/kafka/clojure-event-sourcing/src/" "~/.emacs.d/init.el" "~/.lein/profiles.clj" "~/workspace/kafka/jackdaw/examples/word-count/src/word_count.clj" "~/workspace/cert/project.clj" "/Users/pyskell/tools/apache-tomcat-8.0.53/logs/l1" "~/workspace/kafka-streams-the-clojure-way/project.clj" "~/retrm.md" "~/workspace/u/sh/project.clj" "~/interfaces.md" "~/Downloads/app_interaction.sql" "~/workspace/u/dev.clj" "~/workspace/u3campus/jlc2.log" "~/Downloads/logs/site" "~/Downloads/app_interaction.sql" "~/.emacs.d/init.el" "~/workspace/dali" "~/.lein/profiles.clj" "~/workspace/dali" "~/.lein/profiles.clj" "~/workspace/dali-svg/project.clj" "~/workspace/dali-svg" "~/workspace/corfu" "~/workspace/erl/" "~/tut.erl" "~/workspace/blog/content/" "~/workspace/blog/content/post/" "~/workspace/blog/.dir-locals.el" "~/workspace/blog/.dir-local.el" "~/.emacs.d/init.el" "~/workspace/blog/content/post/" "~/workspace/blog/config.toml" "~/.lein/profiles.clj" "~/" "~/.emacs.d/" "~/.emacs.d/init.el" "~/workspace/cert/doc/srt/upload_audio_file.mp3.har" "~/.emacs.d/init.el" "~/.emacs.d/" "~/.emacs.d/init.el" "~/workspace/meander/doc/operator-overview.md" "~/workspace/cert/project.clj" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/app.cljs" "~/workspace/kfc/src/main/kfc/frontend/app_sortable_tree.cljs" "~/workspace/kfc/src/main/kfc/frontend/app.cljs" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/emacs.d/init.el" "~/Desktop/0726_singlechoice.har" "~/workspace/kfc/node_modules/@nosferatu500/react-sortable-tree/" "~/workspace/kfc/" "~/workspace/cert/" "~/Desktop/0726_singlechoice.har" "~/Desktop/debug.har" "~/.emacs.d/init.el" "~/workspace/cert/src/test/clj/data/convert/article_test.clj" "~/workspace/kfc/src/main/kfc/frontend/20220706.org" "~/workspace/kfc/20220714.org" "~/.emacs.d/init.el" "~/init.el" "~/~/.emacs.d/elpa/cider-20220531.616/" "~/workspace/kfc/20220714.org" "~/workspace/kfc/src/main/kfc/frontend/view.org" "~/workspace/kfc/src/main/kfc/frontend/ph_software_design.org" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/menu.org" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/20220706.log" "~/workspace/kfc/src/main/kfc/frontend/img/" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/img/match_of_text_structure_and_translation_structure.png" "~/workspace/kfc/src/main/kfc/frontend/img/" "~/workspace/kfc/src/main/kfc/frontend/20220706.org" "~/workspace/kfc/src/main/kfc/frontend/menu.org" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/level.org" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/emacs.d/init.el" "~/workspace/kfc/public/index.html" "~/workspace/kfc/src/main/kfc/frontend/app.cljs" "~/workspace/kfc/shadow-cljs.edn" "~/workspace/kfc/src/main/kfc/frontend/current.org" "~/.emacs.d/init.el" "~/workspace/emacs.d/init.el" "~/init.el" "~/workspace/kfc/src/main/kfc/frontend/parser.org" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/index.org" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/model.org" "~/workspace/kfc/src/main/kfc/frontend/parser.org" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/doc.org" "~/workspace/kfc/src/main/kfc/frontend/" "~/workspace/kfc/src/main/kfc/frontend/doc.cljs" "~/workspace/kfc/src/main/kfc/frontend/question/" "~/workspace/kfc/src/main/kfc/frontend/question/choice.cljs" "~/workspace/kfc/src/main/kfc/frontend/question" "~/workspace/kfc/src/main/kfc/frontend/question/choice.cljs" "~/workspace/kfc/src/main/kfc/frontend/"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/Users/pyskell/workspace/kafka/clojure-event-sourcing/src/event_sourcing/core.clj"
+  "core.clj"
+  'clojure-mode
+  '(abbrev-mode eldoc-mode global-auto-revert-mode override-global-mode projectile-mode paredit-mode rainbow-delimiters-mode rainbow-mode evil-collection-unimpaired-mode hs-minor-mode cider-mode yas-minor-mode subword-mode flycheck-mode company-mode hl-todo-mode super-save-mode diff-hl-mode which-key-mode undo-tree-mode volatile-highlights-mode)
+  5695
+  '(5695 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 25841 37864 354825 0) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (5485 4720 5527 5694 5694 3282 1867 1982 1982 1029 1436 1433 1436 1275 1078 1433))))
+
+(desktop-create-buffer 208
+  "/Users/pyskell/workspace/kafka/clojure-event-sourcing/src/event_sourcing/utils.clj"
+  "utils.clj"
+  'clojure-mode
+  '(abbrev-mode eldoc-mode global-auto-revert-mode override-global-mode projectile-mode paredit-mode rainbow-delimiters-mode rainbow-mode evil-collection-unimpaired-mode hs-minor-mode cider-mode yas-minor-mode subword-mode flycheck-mode company-mode hl-todo-mode super-save-mode diff-hl-mode which-key-mode undo-tree-mode volatile-highlights-mode)
+  257
+  '(28 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 25841 37477 741079 0) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
+  '((mark-ring (143 115 257 257))))
+
+(desktop-create-buffer 208
+  "/Users/pyskell/.m2/repository/fundingcircle/jackdaw/0.9.11/jackdaw-0.9.11.jar:jackdaw/serdes.clj"
+  "serdes.clj"
+  'clojure-mode
+  '(abbrev-mode eldoc-mode global-auto-revert-mode override-global-mode projectile-mode paredit-mode rainbow-delimiters-mode rainbow-mode evil-collection-unimpaired-mode hs-minor-mode cider-mode yas-minor-mode subword-mode flycheck-mode company-mode hl-todo-mode super-save-mode diff-hl-mode which-key-mode undo-tree-mode volatile-highlights-mode)
+  187
+  '(nil nil)
+  t
+  nil
+  '((indent-tabs-mode) (buffer-display-time 25841 37476 326173 0))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/Users/pyskell/.m2/repository/fundingcircle/jackdaw/0.9.11/jackdaw-0.9.11.jar:jackdaw/admin.clj"
+  "admin.clj"
+  'clojure-mode
+  '(abbrev-mode eldoc-mode global-auto-revert-mode override-global-mode projectile-mode paredit-mode rainbow-delimiters-mode rainbow-mode evil-collection-unimpaired-mode hs-minor-mode cider-mode yas-minor-mode subword-mode flycheck-mode company-mode hl-todo-mode super-save-mode diff-hl-mode which-key-mode undo-tree-mode volatile-highlights-mode)
+  2351
+  '(2351 nil)
+  t
+  nil
+  '((indent-tabs-mode) (buffer-display-time 25841 37279 208509 0))
+  '((mark-ring (2351))))
+
+(desktop-create-buffer 208
+  "/Users/pyskell/.m2/repository/fundingcircle/jackdaw/0.9.11/jackdaw-0.9.11.jar:jackdaw/data.clj"
+  "data.clj"
+  'clojure-mode
+  '(abbrev-mode eldoc-mode global-auto-revert-mode override-global-mode projectile-mode paredit-mode rainbow-delimiters-mode rainbow-mode evil-collection-unimpaired-mode hs-minor-mode cider-mode yas-minor-mode subword-mode flycheck-mode company-mode hl-todo-mode super-save-mode diff-hl-mode which-key-mode undo-tree-mode volatile-highlights-mode)
+  2619
+  '(nil nil)
+  t
+  nil
+  '((indent-tabs-mode) (buffer-display-time 25841 37257 256221 0))
+  '((mark-ring nil)))
+

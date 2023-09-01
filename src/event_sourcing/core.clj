@@ -1,13 +1,18 @@
 (ns event-sourcing.core
   (:import [org.apache.kafka.streams StreamsConfig KafkaStreams StreamsBuilder KeyValue]
            [org.apache.kafka.streams.state QueryableStoreTypes]
-           [org.apache.kafka.streams.kstream ValueMapper Reducer JoinWindows ValueTransformer Transformer]
+           [org.apache.kafka.streams.kstream ValueMapper Reducer JoinWindows ValueTransformer Transformer
+            TimeWindows]
 
            [org.apache.kafka.clients.consumer ConsumerConfig]
-           [org.apache.kafka.clients.producer KafkaProducer ProducerRecord])
+           [org.apache.kafka.clients.producer KafkaProducer ProducerRecord]
+           [java.time Duration])
   (:require [jackdaw.streams :as j]
             [jackdaw.client :as jc]
             [jackdaw.admin :as ja]
+            [jackdaw.serdes.edn :as jse]
+            [jackdaw.serdes :as js]
+            [jackdaw.serdes.json :as jj]
             [event-sourcing.flight-time-analytics :as flight-time-analytics]
             [event-sourcing.passenger-counting :as passenger-counting]
             [event-sourcing.delay-finder :as delay-finder]
@@ -19,6 +24,18 @@
             [clojure.string :as str]))
 
 
+(def log-config {"bootstrap.servers"
+                ;; data
+                ;"10.1.21.44:9092,10.1.6.141:9092,10.1.28.103:9092"
+                                         ;log
+                                         "10.1.143.165:9092,10.1.139.102:9092,10.1.141.233:9092"
+                 StreamsConfig/APPLICATION_ID_CONFIG "a-log"
+                 StreamsConfig/COMMIT_INTERVAL_MS_CONFIG 3000
+                 ; ConsumerConfig/AUTO_OFFSET_RESET_CONFIG "latest"
+                 ConsumerConfig/AUTO_OFFSET_RESET_CONFIG "earliest"
+                 "acks"              "all"
+                 "retries"           "0"
+                 "cache.max.bytes.buffering" "10485760"})
 
 
 (def app-config {"bootstrap.servers"  "10.3.18.110:9092"  ;; "localhost:9092"
@@ -31,16 +48,19 @@
 
 (defn confirm-topic! [topic-name]
   (let [topic          (topic-config topic-name)
-        admin-client   (ja/->AdminClient app-config)
+        admin-client   (ja/->AdminClient log-config)
         topic-existed? (ja/topic-exists? admin-client topic)]
     (println "topic-existed? " topic-name ":" topic-existed?)
-    (when topic-existed?
-      (ja/delete-topics! admin-client [topic]))
-    (ja/create-topics! admin-client [topic])))
+                                        ;(when topic-existed?
+                                        ;  (ja/delete-topics! admin-client [topic]))
+                                        ; (ja/create-topics! admin-client [topic])
+    (when (not topic-existed?)
+      (ja/create-topics! admin-client [topic]))
+    ))
 
 (defn produce-one
   ([topic k v ]
-   (with-open [producer (jc/producer app-config (topic-config topic))]
+   (with-open [producer (jc/producer log-config (topic-config topic))]
      @(jc/produce! producer (topic-config topic) k v))))
 
 (defonce stream-app (atom nil))
@@ -48,12 +68,13 @@
 
 (defn start-topology
   ([topology-preparer!]
-   (start-topology topology-preparer! app-config))
-  ([topology-prepare! app-config]
+   (start-topology topology-preparer! log-config))
+  ([topology-prepare! log-config]
    (let [streams-builder (j/streams-builder)
          _ (topology-prepare! streams-builder)
+         _ (println (java.util.Date.))
          _ (println (-> streams-builder j/streams-builder* .build .describe .toString))
-         kafka-streams (j/kafka-streams streams-builder app-config)]
+         kafka-streams (j/kafka-streams streams-builder log-config)]
      (reset! stream-app kafka-streams)
      (j/start kafka-streams))))
 
@@ -69,7 +90,7 @@
    (reset! continue-monitoring? true)
    (doall (map confirm-topic! topics))
    (future
-     (with-open [subscription (jc/subscribed-consumer (assoc app-config "group.id" "monitor")
+     (with-open [subscription (jc/subscribed-consumer (assoc log-config "group.id" "monitorx")
                                                       (map topic-config topics))]
        (loop [results (jc/poll subscription 200)]
          (doseq [{:keys [topic-name key value]} results]
@@ -106,6 +127,58 @@
     :time #inst "2019-03-17T05:00:00.000-00:00"
     :flight "UA1496"}])
 
+(defn log-count-topology [in-topic out-topic]
+    (fn [builder]
+      (let [window       (Duration/ofSeconds 10)
+            grace        (Duration/ofSeconds 1)
+            time-windows (TimeWindows/ofSizeAndGrace window grace)
+            ]
+        (-> builder
+            (j/kstream (topic-config in-topic))
+                                        ;(j/filter (fn [[k v]]
+                                        ;            (and
+                                        ;             (= (:event-type v) :departed))))
+           (j/map (fn [[_ v]] [(subs (:time_iso8601 v) 0 16)
+                               #_(:http_uni_openid_hash v)
+                               (-> v
+                                   :request
+                                   (#(re-find #"\w+ [/\-\w]*" %))
+                                   (clojure.string/replace #"\w{10,}" "Num")
+                                   )]))
+           ;(j/group-by-key)
+           ;(j/window-by-time time-windows)
+           ;                            ;(j/aggregate (constantly {})
+           ;                            ;             (fn [acc [_k request]]
+           ;                            ;               (println request)
+           ;                            ;               (update acc request (fnil inc 0))
+           ;                            ;               ))
+           ;(j/aggregate (constantly 0)
+           ;             (fn [acc _] (inc acc))
+           ;             {:topic-name "agg-of-lu"
+           ;              :partition-count 1
+           ;              :replication-factor 1
+           ;              :key-serde (js/string-serde)
+           ;              :value-serde (jse/serde)}
+           ;             )
+           ;(j/to-kstream)
+           (j/to (topic-config out-topic))
+           ;(j/process! (fn [_ k v]
+           ;              (println [k, v]))
+           ;            [])
+                       ))
+      builder))
+
+(comment
+  (do (shutdown)
+      ; (start-topology (log-count-topology "prod_ucontent_user_struct_progress" "a-flight-status"))
+                                        (start-topology (log-count-topology "ucontent" "a-flight-status"))
+                                        ; (monitor-topics ["nginx-log-itest"])
+      )
+
+  (topic-config "k12_nginx_log")
+  (monitor-topics ["nginx-log-itest"])
+
+  )
 
 ;; EXAMPLE 1: Finds delayed flights from flight-events, writes to flight-status
 (comment
@@ -301,7 +374,7 @@
 (comment
   (do (shutdown)
       (start-topology decisions/build-clean-plane-topology
-                      (assoc app-config
+                      (assoc log-config
                              StreamsConfig/APPLICATION_ID_CONFIG "cleaning-planner-bugfix"
                              ConsumerConfig/AUTO_OFFSET_RESET_CONFIG "earliest"
                              ))
